@@ -1,9 +1,7 @@
-# example
-
 [![Build
 Status](https://travis-ci.org/jeanmico/example.svg?branch=master)](https://travis-ci.org/jeanmico/example)
 
-Example python project with testing.
+Example python project with continuous testing.
 
 ## usage
 
