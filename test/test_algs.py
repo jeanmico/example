@@ -1,8 +1,10 @@
 import numpy as np
 from example import algs
 
-def tst_arrays():
-    return [np.random.rand(10), np.random.uniform(-100, 100, 10), [], ['b', 'B', 'ba'],  list(range(1,11))[::-1]]
+def num_arrays():
+    return [np.random.rand(10), np.random.uniform(-100, 100, 10),   list(range(1,11))[::-1]]
+
+
 
 def test_pointless_sort():
     # generate random vector of length 10
@@ -23,7 +25,7 @@ def test_bubblesort():
     # think about: (1) does your code handle 0-element arrays without
     # failing, (2) does your code handle characters?
 
-    l = tst_arrays()
+    l = num_arrays()
 
     for x in l:
         algs.bubblesort(x)
@@ -31,9 +33,9 @@ def test_bubblesort():
     
 
 def test_quicksort():
-
-    l = tst_arrays()
+    l = num_arrays()
     for x in l:
         algs.quicksort(x)
-        assert all (x[i] <= x[i+1] for i in range(0, len(x) -1))
+        print(x)
+        assert all(x[i] <= x[i+1] for i in range(0, len(x) - 1))
 
