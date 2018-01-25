@@ -1,5 +1,20 @@
 import numpy as np
 
+def validate(x):
+    """
+    performs basic checks on input
+    """
+    if type(x) != list:
+        print('nope')
+
+    if any(isinstance(i, list) for i in x):
+        print('nope')
+
+    type1 = type(x[0])
+    if not all(isinstance(i, type1) for i in x):
+        print('nope')
+
+
 def is_sorted(x):
     return all(x[i] <= x[i + 1] for i in range(0, len(x) -1))
 
