@@ -1,6 +1,9 @@
 import numpy as np
 from example import algs
 
+def tst_arrays():
+    return [np.random.rand(10), np.random.uniform(-100, 100, 10), [], ['b', 'B', 'ba'],  list(range(1,11))[::-1]]
+
 def test_pointless_sort():
     # generate random vector of length 10
     x = np.random.rand(10)
@@ -20,15 +23,17 @@ def test_bubblesort():
     # think about: (1) does your code handle 0-element arrays without
     # failing, (2) does your code handle characters?
 
-    x = np.array([1,2,4,0,1])
+    l = tst_arrays()
+
+    for x in l:
+        algs.bubblesort(x)
+        assert all(x[i] <= x[i+1] for i in range(0, len(x) - 1))
     
-    # for now, just attempt to call the bubblesort function, should
-    # actually check output
-    algs.bubblesort(x)
 
 def test_quicksort():
 
-    x = np.array([1,2,4,0,1])
-    # for now, just attempt to call the quicksort function, should
-    # actually check output
-    algs.quicksort(x)
+    l = tst_arrays()
+    for x in l:
+        algs.quicksort(x)
+        assert all (x[i] <= x[i+1] for i in range(0, len(x) -1))
+
