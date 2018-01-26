@@ -7,6 +7,7 @@ def validate(x, numeric_only=False):
     if np.isscalar(x):
         raise ValueError("input must be list")
 
+
     if numeric_only and not all(isinstance(i, (int, float)) for i in x):
         raise ValueError("for quicksort, all elements must be numeric")
 
@@ -19,10 +20,6 @@ def validate(x, numeric_only=False):
         if not all(isinstance(i, (int, float)) for i in x):
             raise ValueError("elements must be of similar type")
 
-
-def is_sorted(x):
-    return all(x[i] <= x[i + 1] for i in range(0, len(x) -1))
-
 def pointless_sort(x):
     """
     This function always returns the same values to show how testing
@@ -32,18 +29,24 @@ def pointless_sort(x):
 
 def bubblesort(x):
     """
-    Describe how you are sorting `x`
+    For an array of n elements:
+        pass through the array n times
+        on each pass, swap adjacent values that are out of order
     """
+    if len(x) == 0:
+        return x
     validate(x)
     for i in range(len(x)):
         for j in range(len(x)-i-1):
             if x[j] > x[j+1]:
                 x[j], x[j+1] = x[j+1], x[j]
-
-    #assert is_sorted(x)
     return x
 
 def partition(x, l, h):
+    """
+    finds a pivot point
+    reorders list by comparing each element to the pivot
+    """
     p = l
     for j in range(l + 1, h + 1):
         if x[j] < x[l]:
@@ -53,6 +56,10 @@ def partition(x, l, h):
     return p
 
 def qsort(x, low, high):
+    """
+    calls partition function to break list into two parts
+    recursively calls itself to sort each part
+    """
     if low < high:
         p = partition(x, low, high)
         qsort(x, low, p - 1)
@@ -62,9 +69,8 @@ def quicksort(x):
     """
     Describe how you are sorting `x`
     """
+    if len(x) == 0:
+        return x
     validate(x, True)
-
     qsort(x, 0, len(x) -1)
     return x
-
-quicksort([1, 1.1])
