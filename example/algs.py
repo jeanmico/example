@@ -15,8 +15,9 @@ def validate(x, numeric_only=False):
         raise ValueError("elements may not be lists")
 
     type1 = type(x[0])
-    if not all(isinstance(i, type1) for i in x):
-        raise ValueError("elements must be of similar type")
+    if type1 == int or type1 == float:
+        if not all(isinstance(i, (int, float)) for i in x):
+            raise ValueError("elements must be of similar type")
 
 
 def is_sorted(x):
@@ -61,10 +62,9 @@ def quicksort(x):
     """
     Describe how you are sorting `x`
     """
-    #validate(x, True)
-    print(x)
+    validate(x, True)
+
     qsort(x, 0, len(x) -1)
-    print(x)
     return x
 
-quicksort(list(range(1,11))[::-1])
+quicksort([1, 1.1])
